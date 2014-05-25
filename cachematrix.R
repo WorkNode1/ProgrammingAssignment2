@@ -33,14 +33,13 @@ cacheSolve <- function(x, ...) {
   
   if(!is.null(inverse)) {          # If cached inverse exists...
     message("getting cached data")
-    return(inverse)                # return cached copy. Don't recalculate
+    return(inverse)                # ...return cached copy. Don't recalculate
   }
   
-  data <- x$get()                  # Retrieve original matrix
+  data <- x$get()                  # Otherwise, retrieve original matrix
   inverse <- solve(data)           # Calculate inverse matrix
-  inverse
   x$setinv(inverse)                # cache calculated inverse in matrix object
-  inverse                          # Print out newly-cached inverse.
+  return(inverse)                  # Return calculated (and newly-cached) inverse
 }
 
 ## Test run
